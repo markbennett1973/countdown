@@ -1,0 +1,32 @@
+.container
+{
+    /* center contents */
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.tiles
+{
+    margin: 20px 0 40px 0;
+}
+.tile
+{
+    background-color: #3333ff;
+    height: 60px;
+    width: 60px;
+    margin-right: 10px;
+    border: 2px solid #99ccff;
+    display: inline-block;
+    color: #ffffff;
+    font-size: 32px;
+    padding-top: 5px;
+    font-weight: bold;
+    text-align: center;
+}
+
+#check-word, #play-again, #target
+{
+    display: none;
+    margin-top: 30px;
+}

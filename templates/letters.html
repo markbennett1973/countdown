@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Letters Game
+{% endblock %}
+
+{% block main %}
+    <h1>Countdown Letters Game</h1>
+    
+    <div class="tiles">
+        {% for n in range(9) %}
+            <div class="tile">&nbsp;</div>
+        {% endfor %}
+    </div>
+    
+    <div id="buttons">
+        <button class="btn btn-primary" id="choose-vowel">Choose Vowel</button>
+        <button class="btn btn-primary" id="choose-consonant">Choose Consonant</button>
+    </div>
+    
+    <div id="clock" class="clock"></div>
+    <div id="check-word">
+        Time's up! How did you get on? What was your best word?
+        <form id="check-word-form" action="{{ url_for('check_word') }}">
+            <input type="text" name="word" />
+            <input type="hidden" name="letters" />
+            <input type="submit" class="btn btn-secondary" value="Check word">
+        </form>
+    </div>
+    <div id="play-again">
+        <a href="/" class="btn btn-default">Play again</a>
+    </div>
+{% endblock %}

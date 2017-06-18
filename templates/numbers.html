@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Numbers Game
+{% endblock %}
+
+{% block main %}
+    <h1>Countdown Numbers Game</h1>
+    
+    <div class="tiles">
+        {% for n in range(6) %}
+            <div class="tile">&nbsp;</div>
+        {% endfor %}
+    </div>
+    
+    <div id="buttons">
+        <button class="btn btn-primary" id="choose-small-number">Choose Small Number</button>
+        <button class="btn btn-primary" id="choose-large-number">Choose Large Number</button>
+    </div>
+
+    <div id="target" class="tiles">
+        <p>Your target is:</p>
+        <div class="tile">&nbsp;</div>
+    </div>
+    
+    <div id="clock" class="clock"></div>
+    <div id="play-again">
+        <a href="/" class="btn btn-default">Play again</a>
+    </div>
+{% endblock %}
