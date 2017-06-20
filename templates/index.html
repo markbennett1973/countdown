@@ -2,7 +2,10 @@
 
 {% block main %}
    <h1>Welcome to Countdown</h1>
-   Choose your game:
+
+    <canvas id="clock-canvas" width="200" height="200"></canvas>
+
+   <p>Choose your game</p>
    <p>
       <a href="{{ url_for('letters') }}" class="btn btn-primary">Letters</a>
       <a href="{{ url_for('numbers') }}" class="btn btn-primary">Numbers</a>

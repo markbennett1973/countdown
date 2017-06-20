@@ -6,7 +6,9 @@
 
 {% block main %}
     <h1>Countdown Numbers Game</h1>
-    
+
+    <canvas id="clock-canvas" width="200" height="200"></canvas>
+
     <div class="tiles">
         {% for n in range(6) %}
             <div class="tile">&nbsp;</div>
@@ -23,7 +25,6 @@
         <div class="tile">&nbsp;</div>
     </div>
     
-    <div id="clock" class="clock"></div>
     <div id="play-again">
         <a href="/" class="btn btn-default">Play again</a>
     </div>

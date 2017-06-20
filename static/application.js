@@ -26,6 +26,8 @@ $(document).ready(function() {
             $("#play-again").show();
         });
     });
+
+    drawClock(0);
 });
 
 
@@ -109,16 +111,63 @@ function showClock(finishCallback)
     $("#buttons").hide();
     
     var $clock = $('#clock');
-    var time = 3;
+    var time = 0;
     
     var x = setInterval(function() {
-        $clock.html(time);
-        time--;
+        time++;
+        drawClock(time);
 
-        if (time < 0) {
+        if (time == 30) {
             clearInterval(x);
             $("#clock").hide();
             finishCallback();
         }
     }, 1000);
+}
+
+function drawClock(seconds)
+{
+    var canvas = document.getElementById("clock-canvas");
+    var ctx = canvas.getContext("2d");
+    var posx=canvas.width/2;
+    var posy=canvas.height/2;
+
+    // Start with a full size circle
+    ctx.arc(posx, posy, posy, toRadians(0), toRadians(360));
+    ctx.fillStyle="#999999";
+    ctx.fill();
+
+
+    var angle = seconds * 180/30;
+    ctx.beginPath();
+    ctx.moveTo(posx,posy)
+    ctx.arc(posx, posy, posy, toRadians(0), toRadians(angle));
+    ctx.lineTo(posx, posy);
+    ctx.fillStyle="#cccccc";
+
+    ctx.fill();
+
+    // draw the border
+    ctxBorder = canvas.getContext("2d");
+    ctx.beginPath();
+    ctx.arc(posx, posy, posy-2, toRadians(0), toRadians(360));
+    ctx.strokeStyle="#000099";
+    ctx.lineWidth = 4;
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.lineWidth = 1;
+    ctx.moveTo(0, posy);
+    ctx.lineTo(canvas.width, posy);
+    ctx.stroke();
+
+    ctx.moveTo(posx, 0);
+    ctx.lineTo(posx, canvas.height);
+    ctx.stroke();
+}
+
+// Convert degrees to radians, offset by 90 degrees to make zero the top of the arc
+function toRadians(deg) {
+    deg = deg - 90;
+    return (deg * Math.PI / 180);
 }

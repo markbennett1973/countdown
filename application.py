@@ -1,25 +1,26 @@
-from flask import Flask, jsonify, render_template, request, url_for
-from flask_session import Session
-from datetime import datetime
-from decimal import Decimal
+from flask import Flask, jsonify, render_template, request
 import solver
 
 
 # configure application
 app = Flask(__name__)
 
+
 @app.route("/")
 def index():
     return render_template("index.html")
 
+
 @app.route("/letters")
 def letters():
     return render_template("letters.html")
-    
+
+
 @app.route("/numbers")
 def numbers():
     return render_template("numbers.html")
-    
+
+
 @app.route("/letters/solve")
 def letters_solve():
     if request.args.get("letters"):
@@ -30,6 +31,7 @@ def letters_solve():
     response.status_code = 400
     return response
 
+
 @app.route("/letters/check")
 def check_word():
     if request.args.get("word") and request.args.get("letters"):
@@ -39,7 +41,8 @@ def check_word():
     response = jsonify("No word specified")
     response.status_code = 400
     return response
-    
+
+
 @app.route("/numbers/solve")
 def numbers_solve():
     if request.args.get("numbers") and request.args.get("target"):

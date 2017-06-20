@@ -30,3 +30,9 @@
     display: none;
     margin-top: 30px;
 }
+
+#clock-canvas
+{
+    height: 300px;
+    margin: 30px auto;
+}
