@@ -109,7 +109,8 @@ function finishNumbersGame()
 function showClock(finishCallback)
 {
     $("#buttons").hide();
-    
+    document.getElementById("audio").play();
+
     var $clock = $('#clock');
     var time = 0;
     
@@ -122,7 +123,7 @@ function showClock(finishCallback)
             $("#clock").hide();
             finishCallback();
         }
-    }, 1000);
+    }, 980);
 }
 
 function drawClock(seconds)
