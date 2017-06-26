@@ -6,7 +6,7 @@ var largeNumbers = [25, 50, 75, 100];
 var letters = [];
 var numbers = [];
 
-var bestWord = '';
+var solution = '';
 var targetNumber = 0;
 
 $(document).ready(function() {
@@ -22,7 +22,7 @@ $(document).ready(function() {
         var url = $form.attr("action") + '?' + $form.serialize();
         
         $.get(url, function(data) {
-            $("#check-word").html(data + " The best word I could find was " + bestWord);
+            $("#check-word").html(data + " The best word I could find was " + solution);
             $("#play-again").show();
         });
     });
@@ -69,7 +69,7 @@ function startLettersGame()
 {
     showClock(finishLettersGame);
     $.get('/letters/solve?letters=' + letters.join(), function(data) {
-        bestWord = data;
+        solution = data;
     });
 }
 
@@ -97,13 +97,21 @@ function startNumbersGame()
     
     showClock(finishNumbersGame);
     $.get('/numbers/solve?numbers=' + numbers.join() + '&target=' + targetNumber, function(data) {
-        console.log(data);
+        solution = data;
     });
 }
 
 function finishNumbersGame()
 {
-    alert("finish numbers game");
+    if (solution == "") {
+        message = "There is no solution to this game.";
+    }
+    else {
+        message = "How did you do? There is a solution to this game:<br/>" + solution;
+    }
+
+    $("#solution").html(message);
+    $("#play-again").show();
 }
 
 function showClock(finishCallback)

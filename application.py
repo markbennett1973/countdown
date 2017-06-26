@@ -1,5 +1,6 @@
 from flask import Flask, jsonify, render_template, request
 import solver
+import panzi_solver
 
 
 # configure application
@@ -46,7 +47,10 @@ def check_word():
 @app.route("/numbers/solve")
 def numbers_solve():
     if request.args.get("numbers") and request.args.get("target"):
-        solution = solver.solve_numbers(request.args.get("numbers"), request.args.get("target"))
+        # TODO: update my solver with postfix calculations to handle brackets. In the meantime, use the
+        # solver by Mathias Panzenböck - https://github.com/panzi/numbers-python
+        # solution = solver.solve_numbers(request.args.get("numbers"), request.args.get("target"))
+        solution = panzi_solver.solve_numbers(request.args.get("numbers"), request.args.get("target"))
         return jsonify(solution)
     else:
         response = jsonify("No numbers specified")
